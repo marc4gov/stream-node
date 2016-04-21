@@ -11,6 +11,7 @@ var config = require('./config/config'),
 
 var router = express.Router(),
     User = models.User,
+    Tweet = models.Tweet,
     Item = models.Item,
     Pin = models.Pin,
     Follow = models.Follow;
@@ -137,14 +138,18 @@ router.get('/', function(req, res, next){
 ******************/
 
 router.get('/flat', ensureAuthenticated, function(req, res, next){
-    var flatFeed = FeedManager.getNewsFeeds(req.user.id)['flat'];
-
+    //var flatFeed = FeedManager.getNewsFeeds(req.user.id)['flat'];
+    var flatFeed = FeedManager.getUserFeed(req.user.id);
+    
     flatFeed.get({})
         .then(enrichActivities)
         .then(function (enrichedActivities) {
             res.render('feed', {location: 'feed', user: req.user, activities: enrichedActivities, path: req.url});
+            console.log("Activities: ", enrichedActivities);
         })
         .catch(next);
+    
+
 });
 
 /******************
@@ -364,6 +369,16 @@ router.get('/auto_follow/', ensureAuthenticated, function(req, res, next){
             return res.send({});
         }
     });
+});
+
+router.get('/tweet', function(req, res, next){
+            var tweetData = {user: req.user.id, text: "tweet2", target: req.user.id};
+            var tweet = new Tweet(tweetData);
+            tweet.save(function(err) {
+                if (err) next(err);
+                res.set('Content-Type', 'application/json');
+                return res.send({'tweet2': {'id': 1}});
+            });
 });
 
 module.exports = router;

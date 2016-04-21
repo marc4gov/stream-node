@@ -22,8 +22,8 @@ app.use(expressSession({secret: 'keyboard cat',
 						resave: false,
 						saveUninitialized: false}));
 
-app.use(passport_mock.initialize());
-// app.use(passport.initialize());
+//app.use(passport_mock.initialize());
+app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);

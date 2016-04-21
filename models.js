@@ -21,6 +21,22 @@ var userSchema = new Schema(
 
 var User = mongoose.model('User', userSchema);
 
+var tweetSchema = new Schema(
+  {
+    text   : String,
+    user   : { type: Schema.Types.ObjectId, ref: 'User' },
+    target : {type: Schema.Types.ObjectId, ref: 'User'},
+  },
+  {
+    collection: 'Tweet'
+  }
+
+);
+
+tweetSchema.plugin(StreamMongoose.activity);
+
+var Tweet = mongoose.model('Tweet', tweetSchema);
+
 var itemSchema = new Schema(
   {
     user: {type: Schema.Types.ObjectId, required: true, ref: 'User'},
@@ -99,6 +115,7 @@ StreamMongoose.setupMongoose(mongoose);
 
 module.exports = {
   User: User,
+  Tweet: Tweet,
   Item: Item,
   Pin: Pin,
   Follow: Follow

@@ -3,25 +3,25 @@ exports.config = {
   /**
   * GetStream.io API key
   */
-  apiKey: "",
+  apiKey: "84dh574f6w8q",
   
 
   /**
   * GetStream.io API Secret
   */
-  apiSecret: "",
+  apiSecret: "mvnjntz889s8anqb7255nn7wzybyk7mwj4urtg7fqd9yhkmygcymsn5pm2mrm4hc",
   
 
   /**
   * GetStream.io API App ID
   */
-  apiAppId: "",
+  apiAppId: "10556",
   
 
   /**
   * GetStream.io API Location
   */
-  apiLocation: "",
+  apiLocation: "eu-central",
   
 
   /**

@@ -3,8 +3,8 @@
         <% activities.forEach(function(activity){  %>
             <%if (activity.verb == 'Pin') {%>
                 <%- include pin.ejs %>
-            <% } else{ %>
-            	<%- include follow.ejs %>
+            <% } else if (activity.verb == 'Tweet') { %>
+            	<%- include tweet.ejs %>
             <% } %>
         <% }) %>
     </div>

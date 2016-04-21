@@ -6,11 +6,11 @@ module.exports = {
     return function(req, res, next) {
         var passport = this;
 
-        User.findOne({username: 'Andrew'}, function(err, found){
+        User.findOne({username: 'Marc'}, function(err, found){
             if (err) console.log(err);
 
             found.github_id = 639382;
-            found.displayName = 'Andrew';
+            found.displayName = 'Marc';
 
             passport._key = 'passport';
             passport._userProperty = 'user';
